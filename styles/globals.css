@@ -1,16 +1,12 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+.listado-productos {
+  background-color: #f3f3f3;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+.contenedor {
+  max-width: 1200px;
+  width: 95%;
+  padding: 5rem 0;
+  margin: 0 auto;
 }
-
-* {
-  box-sizing: border-box;
+.bg-white {
+  background-color: #FFF;
 }
