@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../components/layout/layout';
+import Layout from '../components/layout/Layout';
 
 export default function Nosotros() {
 
