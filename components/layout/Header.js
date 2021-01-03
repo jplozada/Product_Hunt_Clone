@@ -64,7 +64,7 @@ const Header = () => {
               >
                 Hola: {usuario.displayName}
               </p>
-              <Boton bgColor="true">Cerrar Sesión</Boton>
+              <Boton bgColor="true" onClick={() => firebase.cerrarSesion()}>Cerrar Sesión</Boton>
             </>
           ) : (
             <>
