@@ -3,6 +3,7 @@ import {css} from '@emotion/react';
 import Router, {useRouter} from 'next/router';
 import Layout from "../components/layout/Layout";
 import {Formulario, Campo, InputSubmit, Error} from '../components/ui/Formulario';
+import { v4 as uuidv4 } from 'uuid';
 
 import {FirebaseContext} from '../firebase';
 
@@ -31,6 +32,20 @@ export default function NuevoProducto() {
   // Context con las operaciones crud de firebase
   const {usuario, firebase} = useContext(FirebaseContext);
 
+  // Subir imagen a Firebase Storage
+  const [imageurl, guardarImageUrl] = useState('');
+
+  const handleFile = async (e) => {
+    const id = uuidv4();
+    const file = e.target.files[0];
+    const images = firebase.storage.ref('productos').child(id);
+    await images.put(file);
+    images.getDownloadURL().then(url => {
+      console.log(url); 
+      guardarImageUrl(url)
+    });
+  }
+
   async function crearProducto() {
     
     // Si el usuario no esta autenticado redireccionar al login
@@ -43,14 +58,17 @@ export default function NuevoProducto() {
       nombre,
       empresa,
       url,
+      imageurl,
       descripcion,
       votos: 0  ,
       comentarios: [],
       creado: Date.now()
     }
-
+  
     // Insertarlo en la base de datos
-    firebase.db.collection('productos').add(producto);
+    await firebase.db.collection('productos').add(producto);
+
+    return router.push('/');
   }
 
   return (
@@ -96,18 +114,18 @@ export default function NuevoProducto() {
           </Campo>
           {errores.empresa && <Error>{errores.empresa}</Error>}
 
-          {/* <Campo>
+          <Campo>
             <label htmlFor="imagen">Imagen</label>
             <input
               type="file"
               id="imagen"
               name="imagen"
+              accept="image/*"
               value={imagen}
-              onChange={handleChange}
+              onInput={handleFile}
               onBlur={handleBlur}
             />
           </Campo>
-          {errores.imagen && <Error>{errores.imagen}</Error>} */}
 
           <Campo>
             <label htmlFor="url">URL</label>
