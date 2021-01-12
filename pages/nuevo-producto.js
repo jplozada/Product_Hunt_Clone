@@ -33,7 +33,7 @@ export default function NuevoProducto() {
   const {usuario, firebase} = useContext(FirebaseContext);
 
   // Subir imagen a Firebase Storage
-  const [imageurl, guardarImageUrl] = useState('');
+  const [urlimagen, guardarUrlImagen] = useState('');
 
   const handleFile = async (e) => {
     const id = uuidv4();
@@ -42,7 +42,7 @@ export default function NuevoProducto() {
     await images.put(file);
     images.getDownloadURL().then(url => {
       console.log(url); 
-      guardarImageUrl(url)
+      guardarUrlImagen(url)
     });
   }
 
@@ -58,7 +58,7 @@ export default function NuevoProducto() {
       nombre,
       empresa,
       url,
-      imageurl,
+      urlimagen,
       descripcion,
       votos: 0  ,
       comentarios: [],
