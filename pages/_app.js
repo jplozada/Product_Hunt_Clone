@@ -5,7 +5,7 @@ import useAutenticacion from '../hooks/useAutenticacion';
 
 function MyApp({ Component, pageProps }) {
   const usuario = useAutenticacion();
-  console.log(usuario);
+  //console.log(usuario);
   
   return (
     <FirebaseContext.Provider

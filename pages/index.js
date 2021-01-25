@@ -25,7 +25,7 @@ export default function Home() {
     });
 
     guardarProductos(productos);
-    console.log(productos);
+    //console.log(productos);
   }
 
   return (
