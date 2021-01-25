@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import {FirebaseContext} from '../firebase';
 
+import Error404 from '../components/layout/404';
+
 // Validaciones
 import useValidation from '../hooks/useValidacion';
 import validarCrearProducto from '../validacion/validarCrearProducto';
@@ -62,7 +64,11 @@ export default function NuevoProducto() {
       descripcion,
       votos: 0  ,
       comentarios: [],
-      creado: Date.now()
+      creado: Date.now(),
+      creador: {
+        id: usuario.uid,
+        nombre: usuario.displayName
+      }
     }
   
     // Insertarlo en la base de datos
@@ -74,7 +80,9 @@ export default function NuevoProducto() {
   return (
     <div>
       <Layout>
-        <h1
+        { !usuario ? <Error404/> : (
+          <>
+          <h1
           css={css`
             text-align: center;
             margin-top: 5rem;
@@ -158,6 +166,8 @@ export default function NuevoProducto() {
           {error && <Error>{error}</Error>}
           <InputSubmit type="submit" value="Crear Producto"/>
         </Formulario>
+          </>
+        )}
       </Layout>
     </div>
   );
