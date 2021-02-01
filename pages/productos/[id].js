@@ -52,6 +52,27 @@ const Producto = () => {
 
     const {comentarios, creado, descripcion, empresa, nombre, url, urlimagen, votos, creador} = producto;
 
+    // Administrar y validar los votos
+    const votarProducto = () => {
+        if(!usuario){
+            return router.push('/login');
+        }
+
+        // Obtener y sumar un nuevo voto
+        const nuevoTotal = votos + 1;
+        console.log(nuevoTotal);
+
+        // Actualizar en la BD
+        firebase.db.collection('productos').doc(id).update({ votos: nuevoTotal });
+
+        // Actualizar el state
+        guardarProducto({
+            ...producto,
+            votos: nuevoTotal
+        })
+
+    }
+
     return (
         <Layout>
             {error && <Error404 />}
@@ -109,7 +130,9 @@ const Producto = () => {
                                 text-align: center;
                             `}>{votos} votos</p>
                             {usuario && (
-                                <Boton>
+                                <Boton
+                                    onClick={votarProducto}
+                                >
                                     Votar
                                 </Boton>
                             )}
