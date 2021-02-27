@@ -4,7 +4,7 @@ import Router from 'next/router';
 import Layout from "../components/layout/Layout";
 import {Formulario, Campo, InputSubmit, Error} from '../components/ui/Formulario';
 
-import firebase from '../firebase';
+import firebase from '../firebase/index';
 
 // Validaciones
 import useValidation from '../hooks/useValidacion';

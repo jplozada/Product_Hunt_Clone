@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, {useContext} from 'react';
 import styled from '@emotion/styled';
-import {FirebaseContext} from '../../firebase';
+import {FirebaseContext} from '../../firebase/index';
 
 const Nav = styled.nav`
     padding-left: 2rem;

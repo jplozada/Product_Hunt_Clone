@@ -5,7 +5,7 @@ import Layout from "../components/layout/Layout";
 import {Formulario, Campo, InputSubmit, Error} from '../components/ui/Formulario';
 import { v4 as uuidv4 } from 'uuid';
 
-import {FirebaseContext} from '../firebase';
+import {FirebaseContext} from '../firebase/index';
 
 import Error404 from '../components/layout/404';
 
